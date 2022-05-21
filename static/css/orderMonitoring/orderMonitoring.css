@@ -1,0 +1,200 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.orderMonitoring-account{
+    display: inline-block;
+    float: right;
+    padding: 0px 9px;
+    height: 22px;
+    line-height: 20px;
+    border-radius: 11px;
+    margin: 6px 10px;
+    color: #4088FF;
+    border: solid 1px #4088FF;
+}
+
+.orderMonitoring-account span{
+    line-height: 20px;
+}
+
+.orderMonitoring-account-sel-div{
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #e5e5e5;
+}
+
+.btmBtn div {
+    width: -moz-calc(100% - 24px);
+    width: -webkit-calc(100% - 24px);
+    width: calc(100% - 24px);
+}
+
+.orderMonitoring-account-div{
+    height: 70%;
+    height: -moz-calc(100% - 124px);
+    height: -webkit-calc(100% - 124px);
+    height: calc(100% - 124px);
+    overflow-y: auto;
+}
+
+.orderMonitoring-account-div-num{
+    margin: 4px 12px;
+    padding-bottom: 4px;
+    line-height: 25px;
+    border-bottom: solid 1px #e5e5e5;
+}
+
+.orderMonitoring-account-div-num > div{
+    display: inline-block;
+}
+
+.orderMonitoring-account-div-num-point{
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    background-color: #4d98ff;
+    border-radius: 3px;
+    margin: 0 3px 3px 0;
+}
+
+.orderMonitoring-account-div-num-point2{
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    background-color: #32d0b4;
+    border-radius: 3px;
+    margin: 0 3px 3px 0;
+}
+
+.orderMonitoring-account-div-num-title{
+    font-size: 0.15rem;
+}
+
+.orderMonitoring-account-div-num-data{
+    font-size: 0.16rem;
+    margin-left: 12px;
+    font-weight: bold;
+}
+
+.orderMonitoring-account-div-chart{
+    height: 120px;
+    border-bottom: solid 1px #e5e5e5;
+}
+
+.orderMonitoring-account-div-chart div{
+    float: left;
+    width: 33.3%;
+    height: 100%;
+}
+
+.orderMonitoring-account-content-list{
+    padding: 7px 16px;
+    border-bottom: solid 1px #e5e5e5;
+}
+
+.orderMonitoring-account-content-list-title{
+    line-height: 32px;
+    font-size: 0.15rem;
+}
+
+.orderMonitoring-account-content-list-content{
+    line-height: 32px;
+    font-size: 0.12rem;
+}
+
+.orderMonitoring-account-content-list-title-num{
+    /*float: right;*/
+    font-size: 0.12rem;
+}
+
+.itemList-div > span {
+    display: inline-block;
+}
+
+.bar-blue{
+    height: 0.08rem;
+    border-radius: 0.04rem;
+    background-color: #57aaff;
+    background-image: linear-gradient(to right, #3ec4fd , #598ff9);
+}
+
+.bar-font-blue{
+    color: #49adfb;
+}
+
+.bar-red{
+    height: 0.08rem;
+    border-radius: 0.04rem;
+    background-color: #f75656;
+    background-image: linear-gradient(to right, #f9a16b , #f75656);
+}
+
+.bar-font-red{
+    color: #f8765f;
+}
+
+.itemList-div-rank{
+    background: url(../../img/orderMonitoring/rank.png) no-repeat;
+    background-size: 100% 100%;
+    display: inline-block;
+    float: right;
+    width: 0.18rem;
+    margin-top: 0.07rem;
+    vertical-align: middle;
+    padding-right: 0.01rem;
+    height: 0.18rem;
+    color: white;
+    text-align: center;
+    line-height: 0.17rem;
+}
+
+.scroll-div{
+    width: 100%;
+    height: 90%;
+    height: -moz-calc(100% - 36px);
+    height: -webkit-calc(100% - 36px);
+    height: calc(100% - 36px);
+    overflow-y: auto;
+}
+
+.scroll-div > div{
+    float: left;
+    overflow-x: auto;
+}
+
+.scroll-div-left{
+    width: 1rem;
+}
+
+.scroll-div-right{
+    width: 90%;
+    width: -moz-calc(100% - 1rem);
+    width: -webkit-calc(100% - 1rem);
+    width: calc(100% - 1rem);
+    overflow-x: auto;
+}
+
+.scroll-div-table{
+    text-align: center;
+    font-size: 0.15rem;
+    color: #61606e;
+    border-right: solid 1px #e5e5e5;
+    border-top: solid 1px #e5e5e5;
+}
+
+.scroll-div-table th,tr,td{
+    border-bottom: solid 1px #e5e5e5;
+    height: 0.36rem;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 10px;
+}
+
+.scroll-div-table td{
+    font-size: 0.13rem;
+    color: #78788b;
+}

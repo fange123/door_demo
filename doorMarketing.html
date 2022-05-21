@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="formart-detection" content="telephone=yes" />
+  <title>上门营销</title>
+  <link rel="stylesheet" href="./static/css/mui.css" />
+  <link rel="stylesheet" href="./static/css/common.css" />
+
+  <script src="./static/js/jquery-3.2.1.min.js"></script>
+  <script src="./static/js/mui.min.js"></script>
+  <script src="./static/js/swiper-bundle.min.js"></script>
+  <script src="./static/layui/layui.js"></script>
+  <script src="./static/js/moment.js"></script>
+  <script type="text/javascript" src="./static/js/vue.js"></script>
+
+  <style>
+    #doorMarketing {
+      padding: 12px;
+      background-color: #fff;
+      height: 900px;
+    }
+
+    /* 信息列表 */
+
+    #date {
+      margin-bottom: 0;
+    }
+
+
+    .list li {
+      padding-left: .1rem;
+      line-height: .5rem;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: solid 1px #e5e5e5;
+    }
+
+    .list .button {
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: .16rem;
+      vertical-align: middle;
+      padding: 0;
+      line-height: .5rem;
+      position: relative;
+    }
+
+    .list .value_wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .list .pos {
+      padding: 12px 0;
+      width: 60%;
+      line-height: .28rem;
+      text-align: right;
+    }
+
+    .mui-spinner {
+      height: 22px;
+      width: 22px;
+      position: absolute;
+      top: 27%;
+      left: -41%;
+    }
+
+
+    .title {
+      font-size: .18rem;
+      line-height: .22rem;
+      border-bottom: solid 1px #e5e5e5;
+    }
+
+    /* 图片上传 */
+
+    .upload {
+      margin-top: .2rem;
+      background-color: #fff;
+    }
+
+    .upload .line {
+      height: .2rem;
+      background-color: rgb(242, 243, 246)
+    }
+
+    .upload_title {
+      padding-top: 10px;
+      line-height: .24rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .upload_title span {
+      font-size: .14rem;
+    }
+
+    .img {
+      margin-top: 40px;
+      position: relative;
+    }
+
+    .img img {
+      width: 60px;
+      height: 60px;
+    }
+
+    .img .my_input {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      display: inline-block;
+      top: 0;
+      left: 0;
+
+    }
+
+    .img_list {
+      display: flex;
+      margin-top: 20px;
+    }
+
+    .img_list div span {
+      display: inline-block;
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      top: 0;
+      right: 20px;
+    }
+
+    .img_list div span img {
+      width: 18px;
+      height: 18px;
+    }
+
+    .img_list div {
+      position: relative;
+    }
+
+    .img_list img {
+      width: 80px;
+      height: 80px;
+      margin-right: 20px;
+    }
+
+
+    /* 备注 */
+
+    .remarks {
+      margin-top: .2rem;
+      background-color: #fff;
+    }
+
+    .remarks .line {
+      height: .2rem;
+      background-color: rgb(242, 243, 246)
+    }
+
+    .remarks .layui-form-label {
+      display: block;
+      line-height: .4rem;
+    }
+
+    textarea {
+      font-size: .16rem !important;
+      background-color: rgb(242, 243, 246);
+      border: none;
+      min-height: 80px;
+
+    }
+
+    /* button */
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+
+
+
+    .layui-btn {
+      margin-top: 20px;
+      width: 90%;
+      height: 40px;
+      color: #fff;
+      font-size: .16rem;
+      background-color: rgb(245, 163, 40);
+      border: none
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="doorMarketing" v-cloak>
+    <!-- 标题 -->
+    <div class="title">进厅用户5G登网辅导</div>
+    <!-- 信息列表 -->
+    <ul class="list">
+      <li>我的经纬度
+        <div>
+          <button v-if="latitudeFlag" class="button latitude_button" data-loading-text="获取中">点击获取</button>
+          <div class="value_wrap">
+            <span v-if="!latitudeFlag">
+              经度：{{longitude}}
+            </span>
+            <span v-if="!latitudeFlag">纬度：{{latitude}}</span>
+
+          </div>
+        </div>
+      </li>
+
+      <li>经纬度地址
+        <button class="button position_button" data-loading-text="获取中" v-if="positionFlag">点击获取</button>
+        <span v-if="!positionFlag" class="pos">{{position}}</span>
+      </li>
+
+      <li>时间<span id="date">{{timeDate}}</span>
+      </li>
+    </ul>
+
+    <!-- 图片上传 -->
+    <div class="upload">
+      <div class="line"></div>
+      <div class="upload_title">上传照片 <span>请不要超过3张</span></div>
+      <div class="img_list" ref='img_list'>
+        <div v-for="(file,index) in imgsList" :key="index">
+          <span @click="delImg(index)"><img src="./static/img/close.png" alt=""></span>
+          <img :src="file.pic" alt="" @click="bigImg(index)">
+        </div>
+
+      </div>
+
+      <div class="img">
+        <img src="./static/img/upload.png" alt="">
+        <span ref="my_input" class="my_input"></span>
+      </div>
+
+    </div>
+
+
+    <!-- 备注 -->
+    <div class="remarks">
+      <div class="line"></div>
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-block">
+          <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 保存按钮 -->
+    <div class="btn">
+      <button type="button" class="layui-btn">保存</button>
+
+    </div>
+
+
+
+  </div>
+
+
+  <script>
+
+    const vm = new Vue({
+      el: "#doorMarketing",
+      data() {
+        return {
+          latitudeFlag: true,//显示经纬度
+          positionFlag: true,//显示位置
+          showLatitude: false,//显示纬度行
+          position: '',//位置
+          latitude: '',//纬度
+          longitude: '',//经度
+          timeDate: moment().format('YYYY-MM-DD HH:mm:ss'), //时间
+          filesList: [],//图片列表
+          imgsList: [],
+          browser: {
+            versions: function () {
+              const u = navigator.userAgent,
+                app = navigator.appVersion;
+              return { //移动终端浏览器版本信息
+                trident: u.indexOf('Trident') > -1, //IE内核
+                presto: u.indexOf('Presto') > -1, //opera内核
+                webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+                iPad: u.indexOf('iPad') > -1, //是否iPad
+                webApp: u.indexOf('Safari') == -1, //是否web应该程序，没有头部与底部
+                isWeixin: u.toLowerCase().match(/MicroMessenger/i) == 'micromessenger',//  是否是微信打开的浏览器
+                isMQQbrowser: u.toLowerCase().match(/MQQbrowser/i) == 'mqqbrowser' //  是否是微信打开的浏览器
+              };
+            }(),
+            language: (navigator.browserLanguage || navigator.language).toLowerCase()
+          },
+        }
+      },
+
+
+
+      watch: {},
+      created() {
+
+
+      },
+      mounted() {
+        this.createUploadImgEle();
+        mui.init();
+        //获取中loading加载
+        mui(document.body).on('tap', '.latitude_button', function (e) {
+          mui(this).button('loading');
+          // TODO:获取经纬度
+          const getPositionNew = () => {
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(position => {
+                vm.latitude = `${position.coords.longitude}`;
+                vm.longitude = `${position.coords.latitude}`;
+                mui(this).button('reset');
+                vm.latitudeFlag = false;
+                vm.showLatitude = true;
+              }, error => {
+                mui.alert(error.message)
+                mui(this).button('reset');
+              },
+                {
+                  timeout: 5000
+                });
+            } else {
+              mui.alert("您的设备不支持定位功能");
+            }
+          }
+          getPositionNew()
+
+
+        });
+        mui(document.body).on('tap', '.position_button', function (e) {
+          // TODO:先判断经度纬度是否有值
+          if (vm.latitude && vm.longitude) {
+            mui(this).button('loading');
+            // TODO:根据经纬度获取位置
+            const getPosition = () => {
+              // jsonp解决百度地图api跨域问题
+              $.ajax({
+                url: `https://api.map.baidu.com/reverse_geocoding/v3/?ak=Zs7TU9qIMRkWu2NX0IUo0aaYuboNOEb9&output=json&coordtype=wgs84ll&location=${vm.longitude},${vm.latitude}`,
+                type: 'GET',
+                async: false,
+                dataType: 'jsonp',
+                jsonp: 'callback',
+                jsonpCallback: "callback",
+                contentType: 'application/json; charset=utf-8',
+                success: (result) => {
+                  mui(this).button('reset');
+                  vm.positionFlag = false;
+                  vm.position = result.result.formatted_address || '未查询到有效地址'
+                },
+                error: error => {
+                  umi.toast('获取失败，请稍后重试')
+                  mui(this).button('reset');
+                  vm.positionFlag = false;
+                }
+
+              })
+
+            }
+            getPosition()
+          } else {
+            mui.alert('请先获取经纬度')
+          }
+
+
+        });
+
+        // TODO:注册时间组件
+        layui.use('laydate', function () {
+          const laydate = layui.laydate;
+          laydate.render({
+            elem: '#date',
+            type: 'datetime',
+            value: vm.timeDate,
+            trigger: 'click',
+            btns: ['now', 'confirm'],
+            done: value => {
+              vm.timeDate = value;
+            }
+          });
+
+
+        });
+
+        // TODO:注册弹框
+        layui.use('layer')
+
+
+      },
+      methods: {
+        selectTime() {
+          this.showTime = false;
+
+        },
+        createUploadImgEle() {
+          const input = document.createElement('input');
+          input.type = 'file';
+          input.accept = 'image/*';
+          input.multiple = 'multiple';
+          input.style.position = "absolute";
+          input.style.left = '0';
+          input.style.top = '0';
+          input.style.width = '100%';
+          input.style.height = '100%';
+          input.style.overflow = "hidden";
+          input.style.opacity = 0;
+          input.onchange = (event) => {
+
+            let files = event.target.files;
+            if (!files.length) return;
+            files = Array.prototype.slice.call(files);
+            if (vm.filesList.length >= 3) {
+              mui.alert('图片不能超过3张')
+              return
+            } else {
+              vm.filesList = [...vm.filesList, files[0]];
+              // TODO:图片预览
+              const reader = new FileReader();
+              reader.readAsDataURL(files[0])
+              // 当文件读取成功时执行的函数
+              reader.onload = function () {
+                vm.imgsList = [...vm.imgsList, { pic: this.result }]
+
+              }
+
+            }
+
+          }
+          try {
+            //这里或许有点小问题
+            if (this.isAndroid() && this.isWeixin() && !this.isMQQbrowser()) {
+              input.capture = 'camera';
+
+            }
+          } catch (e) {
+            console.log("创建原生input元素报错 ：", e);
+          }
+          this.$refs.my_input.appendChild(input);
+
+        },
+
+
+        //  是否是 ios系统
+        isIos() {
+          return this.browser.versions.ios || this.browser.versions.iPhone || this.browser.versions.iPad
+        },
+
+        // 是否是安卓系统
+        isAndroid() {
+          return this.browser.versions.android
+        },
+
+        // 是否是移动端
+        isMobile() {
+          return this.browser.versions.mobile;
+        },
+
+        isWeixin() {
+          return this.browser.versions.isWeixin;
+        },
+
+        isMQQbrowser() {
+          return this.browser.versions.isMQQbrowser;
+        },
+
+        //根据索引删除预览图片
+        delImg(index) {
+          const newList = [...this.imgsList]
+          newList.splice(index, 1)
+          this.imgsList = newList
+          //图片删除和文件列表数量同步
+          const newFilesList = [...this.filesList]
+          newFilesList.splice(index, 1)
+          this.filesList = newFilesList
+
+        },
+
+        bigImg(index) {
+          layer.open({
+            type: 1,
+            title: '查看图片',
+            closeBtn: 0,
+            skin: 'layui-layer-nobg',
+            area: ['auto'],
+            shadeClose: true,
+            content: '<img style="width:100%;height:100%;" class="layui-upload-img" src="' + this.imgsList[index].pic + '"/>',
+            scrollbar: false,
+          })
+
+
+        }
+
+
+
+      },
+
+    })
+  </script>
+
+</body>
+
+</html>

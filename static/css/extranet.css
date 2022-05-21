@@ -1,0 +1,266 @@
+body {
+	font-size: .14rem;
+}
+
+.search {
+	padding: .10rem 0rem 0rem .1rem;
+	background-color: #fff;
+}
+
+.search input {
+	border-radius: .2rem;
+	background: rgb(240, 243, 250) url(../img/nav_search.png) no-repeat;
+	background-position: .15rem center;
+	background-size: .14rem;
+	padding: 5px 38px;
+	font-size: .13rem;
+	text-align: left;
+	display: inline-block;
+	margin-bottom: 8px;
+	width: 80%;
+}
+
+.search b {
+	display: inline-block;
+	color: rgb(64, 136, 255);
+	border: 2px solid rgb(64, 136, 255);
+	border-radius: 5px;
+	padding: 0px 6px;
+	margin-left: .1rem;
+	vertical-align: middle;
+	font-size: .15rem;
+}
+
+.main-box ul {
+	margin: 0;
+	padding: 0;
+	background-color: #fff;
+}
+
+.main-box ul li {
+	list-style: none;
+	padding: 0px 20px;
+	border-bottom: 1px solid #f5f5f5;
+	line-height: 40px;
+}
+
+.li-index span {
+	color: rgb(0,0,0);
+}
+
+.li-index input {
+	border: none;
+	display: inline-block;
+	width: 60%;
+	margin: 0;
+	font-size: .14rem;
+}
+
+.li-index span:nth-child(3n) {
+	float: right;
+	color: rgb(153,153,153);
+}
+
+/* 列表箭头 */
+.right.li-index:after {
+	content: '\e583';
+	font-family: Muiicons;
+	position: absolute;
+	color: #777;
+	right: 20px;
+	font-size: .17rem;
+}
+
+.button-div {
+	display: flex;
+	display: -webkit-flex;
+	margin-top: 30px;
+}
+
+.button-div div {
+	flex: 1;
+	text-align: center;
+	margin: 0px 10px 0px 15px;
+	padding: 8px 0px;
+	color: #fff;
+	border-radius: 5px;
+	font-size: .15rem;
+}
+
+.button-div div:nth-child(1) {
+	background-color: rgb(77, 152, 255);
+}
+
+.button-div div:nth-child(2) {
+	background-color: rgb(250,173,20);
+}
+
+.button-div div:nth-child(3) {
+	background-color: rgb(50,208,180);
+}
+
+
+.li-alert {
+	padding: 8px 20px;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+}
+
+.li-alert span {
+	display: block;
+	color: #555;
+}
+
+.li-alert span:nth-child(1) {
+	min-width: 1.5rem;
+}
+
+.li-alert span:nth-child(2) {
+	min-width: .6rem;
+	color: #000;
+}
+
+.li-alert span:nth-child(3) {
+	min-width: .4rem;
+	text-align: right;
+}
+
+.small-title {
+	font-size: .15rem;
+	border-left: 2px solid rgb(77, 152, 255);
+	padding-left: .06rem;
+	line-height: .14rem;
+	margin-top: .05rem;
+	display: block;
+}
+
+.card {
+	background-color: #fff;
+	box-shadow: 0px 1px 1px 1px #0062cc12;
+}
+
+.creatStrategy {
+	width: 100%;
+	background: #F5F5F5;
+	margin-top: .3rem;
+}
+
+[v-cloak] {
+	display: none;
+}
+
+.swiper-container {
+	width: 100%;
+	height: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	/* 箭头颜色 */
+	--swiper-navigation-color: #666;
+	--swiper-navigation-size: .15rem;
+	/* 圆点颜色 */
+	--swiper-pagination-color: rgb(77, 152, 255);
+}
+
+/* 修改分页器圆点大小 */
+.swiper-pagination-bullet {
+	width: 4px;
+	height: 4px;
+}
+
+/* 去除点击选项卡时出现的蓝色边框 */
+.swiper-button-next:focus,
+.swiper-button-prev:focus {
+	outline: none;
+}
+
+/* 去除点击选项卡时出现的蓝色背景 */
+.swiper-button-next,
+.swiper-button-prev {
+	cursor: auto;
+}
+
+.slide-box {
+	margin: .1rem .2rem .3rem .2rem;
+}
+
+.slide-box>span {
+	display: block;
+	margin-bottom: .05rem;
+	font-weight: bold;
+	font-size:14px;
+}
+
+.mui-segmented-control .mui-control-item {
+	line-height: .32rem;
+	font-size: .14rem;
+	font-weight: 300;
+	border-color: #F5F5F5;
+	color: #333;
+}
+.mui-segmented-control .mui-control-item.mui-active{
+	background-color: rgb(77, 152, 255);
+}
+.mui-segmented-control {
+	border-color: #F5F5F5;
+	border-radius: 0px;
+}
+
+.tc-info {
+	background-color: rgb(249,249,249);
+	padding: .05rem;
+	margin-left: 1px;
+}
+
+.tc-info span {
+	color: rgb(51, 51, 51);
+	line-height: .3rem;
+	font-weight: 300;
+}
+.flex-div{
+	display: flex;
+	display: -webkit-flex;
+	width: 100%;
+	text-align: center;
+	align-items: flex-end;
+	padding: .1rem;
+}
+.border-bottom{
+	border-bottom: 1px solid #f5f5f5;
+}
+.flex-div>div{
+	flex: 1;
+	border-right: 1px solid #f5f5f5;
+	padding: 0px .06rem;
+}
+.flex-div>div:nth-last-child(1){
+	border-right: none;
+}
+.flex-div>div span:nth-child(1){
+	color: rgb(153,153,153);
+	font-size: .13rem;
+}
+.cm-num{
+	color: rgb(51,51,51);
+	font-size: .2rem;
+	line-height: .36rem;
+}
+.up{
+	color: rgb(247,97,32);
+	display: inline-block;
+	vertical-align: top;
+	font-size: .11rem;
+	transform: scale(1.6,1);
+}
+	
+.down{
+	color: rgb(50,208,180);
+	display: inline-block;
+	vertical-align: top;
+	font-size: .11rem;
+	transform: scale(1.6,1);
+}
+
+.box-shadow{
+	box-shadow: 0px 1px 1px 1px #0062cc12;
+}

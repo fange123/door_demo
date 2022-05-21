@@ -1,0 +1,27 @@
+@media only screen and (min-width: 320px) {
+	html {
+		font-size: 85px !important;
+	}
+}
+
+@media only screen and (min-width: 360px) {
+	html {
+		font-size: 95px !important;
+	}
+}
+
+@media only screen and (min-width: 375px) {
+	html {
+		font-size: 100px !important;
+	}
+}
+
+@media only screen and (min-width: 410px) {
+	html {
+		font-size: 105px !important;
+	}
+}
+
+html,body{
+	background-color: rgb(240,243,250);
+}
