@@ -438,15 +438,45 @@
               mui.alert('图片不能超过3张')
               return
             } else {
-              vm.filesList = [...vm.filesList, files[0]];
-              // TODO:图片预览
-              const reader = new FileReader();
-              reader.readAsDataURL(files[0])
-              // 当文件读取成功时执行的函数
-              reader.onload = function () {
-                vm.imgsList = [...vm.imgsList, { pic: this.result }]
-
+              //一次选一张图片
+              if (files.length === 1) {
+                vm.filesList = [...vm.filesList, files[0]];
               }
+              //一次选多张图片
+              if (files.length > 1) {
+                if (vm.filesList.length + files.length > 3) {
+
+                  mui.alert('图片不能超过3张')
+                  return
+                } else {
+                  vm.filesList = [...vm.filesList, ...files];
+                }
+              }
+
+              // TODO:图片预览
+              if (files.length === 0) {
+                const reader = new FileReader();
+
+                reader.readAsDataURL(files[0])
+                // 当文件读取成功时执行的函数
+                reader.onload = function () {
+                  vm.imgsList = [...vm.imgsList, { pic: this.result }]
+
+                }
+
+              } else {
+                files.forEach(file => {
+                  const reader = new FileReader();
+                  reader.readAsDataURL(file)
+                  // 当文件读取成功时执行的函数
+                  reader.onload = function () {
+                    vm.imgsList = [...vm.imgsList, { pic: this.result }]
+
+                  }
+
+                })
+              }
+
 
             }
 
