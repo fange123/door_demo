@@ -435,22 +435,19 @@
             let files = event.target.files;
             if (!files.length) return;
             files = Array.prototype.slice.call(files);
-            if (vm.filesList.length >= 3) {
-              mui.alert('图片不能超过3张')
-              return
+            if (this.filesList.length >= 3) {
+              return mui.alert('图片不能超过3张')
             } else {
               //一次选一张图片
               if (files.length === 1) {
-                vm.filesList = [...vm.filesList, files[0]];
+                this.filesList = [...this.filesList, files[0]];
               }
               //一次选多张图片
               if (files.length > 1) {
-                if (vm.filesList.length + files.length > 3) {
-
-                  mui.alert('图片不能超过3张')
-                  return
+                if (this.filesList.length + files.length > 3) {
+                  return mui.alert('图片不能超过3张')
                 } else {
-                  vm.filesList = [...vm.filesList, ...files];
+                  this.filesList = [...this.filesList, ...files];
                 }
               }
 
