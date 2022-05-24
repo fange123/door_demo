@@ -251,7 +251,7 @@
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
-          <textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+          <textarea name="desc" placeholder="请输入内容" class="layui-textarea" maxLength="100"></textarea>
         </div>
       </div>
     </div>
@@ -281,6 +281,7 @@
           longitude: '',//经度
           timeDate: moment().format('YYYY-MM-DD HH:mm:ss'), //时间
           filesList: [],//图片列表
+          remarks: [],
           imgsList: [],
           browser: {
             versions: function () {
@@ -546,7 +547,8 @@
 
 
 
-      },
+      }
+
 
     })
   </script>
